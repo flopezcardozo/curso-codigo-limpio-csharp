@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿List<string> TaskList = new List<string>();
 
-namespace ToDo
-{
-    internal class Program
-    {
-        public static List<string> TaskList { get; set; } = new List<string>();
-
-        static void Main(string[] args)
-        {
             int menuSelected = 0;
             do
             {
@@ -26,12 +17,9 @@ namespace ToDo
                     ShowMenuTaskList();
                 }
             } while ((Menu)menuSelected != Menu.Exit);
-        }
-        /// <summary>
-        /// Show the main menu 
-        /// </summary>
-        /// <returns>Returns option indicated by user</returns>
-        public static int ShowMainMenu()
+
+        // Show the options for the tasks
+        int ShowMainMenu()
         {
             Console.WriteLine("----------------------------------------");
             Console.WriteLine("Ingrese la opción a realizar: ");
@@ -40,21 +28,18 @@ namespace ToDo
             Console.WriteLine("3. Tareas pendientes");
             Console.WriteLine("4. Salir");
 
-            // Read line
             string line = Console.ReadLine();
             return Convert.ToInt32(line);
         }
 
-        public static void ShowMenuRemove()
+        void ShowMenuRemove()
         {
             try
             {
                 Console.WriteLine("Ingrese el número de la tarea a remover: ");
-                // Show current taks
                 ShowMenuTaskList();
 
                 string line = Console.ReadLine();
-                // Remove one position
                 int indexToRemove = Convert.ToInt32(line) - 1;
 
                 if (indexToRemove > (TaskList.Count - 1) || indexToRemove < 0)
@@ -77,7 +62,7 @@ namespace ToDo
             }
         }
 
-        public static void ShowMenuAdd()
+        void ShowMenuAdd()
         {
             try
             {
@@ -92,7 +77,7 @@ namespace ToDo
             }
         }
 
-        public static void ShowMenuTaskList()
+        void ShowMenuTaskList()
         {
             if (TaskList?.Count > 0)
             {
@@ -108,7 +93,7 @@ namespace ToDo
 
             }
         }
-    }
+    
 
     public enum Menu
     {
@@ -117,4 +102,4 @@ namespace ToDo
         List = 3,
         Exit = 4,
     }
-}
+
